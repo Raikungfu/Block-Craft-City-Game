@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/BlockGame/BlockGame.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
