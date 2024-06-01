@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class GuyMoverment : MonoBehaviour
@@ -12,7 +13,9 @@ public class GuyMoverment : MonoBehaviour
     private float ySpeed; 
     private float originalStepOffset;
     private Animator animator;
-
+    private GuyStats stats;
+    public float groundCheckDistance = 0.2f;
+    public LayerMask groundMask;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +23,7 @@ public class GuyMoverment : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
         animator = GetComponent<Animator>();
+        stats = GetComponent<GuyStats>();
     }
 
     // Update is called once per frame
@@ -64,7 +68,15 @@ public class GuyMoverment : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ySpeed = jumpSpeed;
+            RaycastHit hit;
+
+            if (characterController.isGrounded || CheckIfGrounded())
+            {
+                ySpeed = jumpSpeed;
+            } else if (stats.level > 20 && Physics.Raycast(transform.position, Vector3.down, out hit) && hit.distance <= ySpeed)
+            {
+                ySpeed = jumpSpeed;
+            }
         }
 
         Vector3 velocity = movementDirection * magnitude;
@@ -78,6 +90,17 @@ public class GuyMoverment : MonoBehaviour
     {
         bool isJumping = !characterController.isGrounded;
         animator.SetBool("IsJumping", isJumping); 
+    }
+
+    bool CheckIfGrounded()
+    {
+        RaycastHit hit;
+        Vector3 rayOrigin = transform.position + Vector3.up * 10f;
+        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, characterController.height / 2 + groundCheckDistance, groundMask))
+        {
+            return true;
+        }
+        return false;
     }
 
 }

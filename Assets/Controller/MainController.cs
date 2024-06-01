@@ -9,13 +9,10 @@ public class MainController : MonoBehaviour
     {
         SceneManager.LoadScene("BlockGame", LoadSceneMode.Single);
     }
-    public void runSetting()
-    {
-
-    }
-
     public void exit()
     {
+        UnityEditor.EditorApplication.isPlaying = false;
 
+        Application.Quit();
     }
 }
