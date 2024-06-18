@@ -3,36 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Raiku\\My project (5)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{128C56B7-E8F1-EB92-9E15-B1650697419B}|Unity.AI.Navigation.csproj|c:\\users\\raiku\\my project (5)\\library\\packagecache\\com.unity.ai.navigation@1.0.0-exp.4\\runtime\\navmeshlink.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{128C56B7-E8F1-EB92-9E15-B1650697419B}|Unity.AI.Navigation.csproj|solutionrelative:library\\packagecache\\com.unity.ai.navigation@1.0.0-exp.4\\runtime\\navmeshlink.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|c:\\users\\raiku\\my project (5)\\assets\\blink\\art\\animals\\stylized\\demo_animals\\demodata\\animationdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\blink\\art\\animals\\stylized\\demo_animals\\demodata\\animationdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|c:\\users\\raiku\\my project (5)\\assets\\controller\\objectcontroller\\guy\\guystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\controller\\objectcontroller\\guy\\guystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\controller\\objectcontroller\\npc\\npcstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\controller\\objectcontroller\\npc\\npcstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|c:\\users\\raiku\\my project (5)\\assets\\controller\\objectcontroller\\npc\\npccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\controller\\objectcontroller\\npc\\npccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\controller\\objectcontroller\\guy\\guyaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\controller\\objectcontroller\\guy\\guyaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{392F4EEA-677E-80E3-0A58-A0804ECF464E}|UnityEngine.UI.csproj|C:\\Users\\Raiku\\My project (5)\\library\\packagecache\\com.unity.ugui@1.0.0\\runtime\\eventsystem\\inputmodules\\baseinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{392F4EEA-677E-80E3-0A58-A0804ECF464E}|UnityEngine.UI.csproj|solutionrelative:library\\packagecache\\com.unity.ugui@1.0.0\\runtime\\eventsystem\\inputmodules\\baseinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\blink\\art\\animals\\stylized\\demo_animals\\demodata\\animationdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\blink\\art\\animals\\stylized\\demo_animals\\demodata\\animationdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Raiku\\My project (5)\\assets\\guyinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\guyinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\models\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\models\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\guyinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\guyinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{392F4EEA-677E-80E3-0A58-A0804ECF464E}|UnityEngine.UI.csproj|C:\\Users\\Raiku\\My project (5)\\library\\packagecache\\com.unity.ugui@1.0.0\\runtime\\eventsystem\\inputmodules\\baseinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{392F4EEA-677E-80E3-0A58-A0804ECF464E}|UnityEngine.UI.csproj|solutionrelative:library\\packagecache\\com.unity.ugui@1.0.0\\runtime\\eventsystem\\inputmodules\\baseinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{128C56B7-E8F1-EB92-9E15-B1650697419B}|Unity.AI.Navigation.csproj|C:\\Users\\Raiku\\My project (5)\\library\\packagecache\\com.unity.ai.navigation@1.0.0-exp.4\\runtime\\navmeshlink.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{128C56B7-E8F1-EB92-9E15-B1650697419B}|Unity.AI.Navigation.csproj|solutionrelative:library\\packagecache\\com.unity.ai.navigation@1.0.0-exp.4\\runtime\\navmeshlink.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\controller\\objectcontroller\\guy\\guystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\controller\\objectcontroller\\guy\\guystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\controller\\objectcontroller\\npc\\npcstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|solutionrelative:assets\\controller\\objectcontroller\\npc\\npcstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{760C3C8E-4038-4128-6F13-A5C3379F636E}|Assembly-CSharp.csproj|C:\\Users\\Raiku\\My project (5)\\assets\\glowingsphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -75,6 +79,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NPCController.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\NPC\\NPCController.cs",
+              "RelativeDocumentMoniker": "Assets\\Controller\\ObjectController\\NPC\\NPCController.cs",
+              "ToolTip": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\NPC\\NPCController.cs",
+              "RelativeToolTip": "Assets\\Controller\\ObjectController\\NPC\\NPCController.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAmwDgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T10:36:38.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GuyAction.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
+              "RelativeDocumentMoniker": "Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
+              "ToolTip": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
+              "RelativeToolTip": "Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAkwHgAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T00:52:02.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "NavMeshLink.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Library\\PackageCache\\com.unity.ai.navigation@1.0.0-exp.4\\Runtime\\NavMeshLink.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ai.navigation@1.0.0-exp.4\\Runtime\\NavMeshLink.cs",
@@ -82,25 +111,23 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.ai.navigation@1.0.0-exp.4\\Runtime\\NavMeshLink.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T07:08:40.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T07:08:40.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AnimationDemo.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Blink\\Art\\Animals\\Stylized\\Demo_Animals\\DemoData\\AnimationDemo.cs",
               "RelativeDocumentMoniker": "Assets\\Blink\\Art\\Animals\\Stylized\\Demo_Animals\\DemoData\\AnimationDemo.cs",
               "ToolTip": "C:\\Users\\Raiku\\My project (5)\\Assets\\Blink\\Art\\Animals\\Stylized\\Demo_Animals\\DemoData\\AnimationDemo.cs",
               "RelativeToolTip": "Assets\\Blink\\Art\\Animals\\Stylized\\Demo_Animals\\DemoData\\AnimationDemo.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAYwDcAAAAcAAAA",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAtwCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T06:57:50.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T06:57:50.749Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "GuyStats.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\Guy\\GuyStats.cs",
               "RelativeDocumentMoniker": "Assets\\Controller\\ObjectController\\Guy\\GuyStats.cs",
@@ -108,8 +135,7 @@
               "RelativeToolTip": "Assets\\Controller\\ObjectController\\Guy\\GuyStats.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAAxwJ8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T05:55:53.872Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T05:55:53.872Z"
             },
             {
               "$type": "Document",
@@ -125,31 +151,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Weapon.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Models\\Weapon.cs",
               "RelativeDocumentMoniker": "Assets\\Models\\Weapon.cs",
               "ToolTip": "C:\\Users\\Raiku\\My project (5)\\Assets\\Models\\Weapon.cs",
               "RelativeToolTip": "Assets\\Models\\Weapon.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAgwDgAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-12T02:45:04.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GuyAction.cs",
-              "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
-              "RelativeDocumentMoniker": "Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
-              "ToolTip": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
-              "RelativeToolTip": "Assets\\Controller\\ObjectController\\Guy\\GuyAction.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAkwBgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T00:52:02.298Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "NPCStats.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\Controller\\ObjectController\\NPC\\NPCStats.cs",
               "RelativeDocumentMoniker": "Assets\\Controller\\ObjectController\\NPC\\NPCStats.cs",
@@ -161,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "GlowingSphere.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\GlowingSphere.cs",
               "RelativeDocumentMoniker": "Assets\\GlowingSphere.cs",
@@ -173,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "GuyInventory.cs",
               "DocumentMoniker": "C:\\Users\\Raiku\\My project (5)\\Assets\\GuyInventory.cs",
               "RelativeDocumentMoniker": "Assets\\GuyInventory.cs",

@@ -110,32 +110,17 @@ public class GuyAction : MonoBehaviour
 
         if (Input.GetButtonDown("Slash") && !IsPointerOverUIObject() && currentWeapon)
         {
-            animator.SetBool("IsSlash", true);
+            animator.SetTrigger("Slash");
         }
 
         if (Input.GetButtonDown("Grab"))
         {
-            animator.SetBool("IsGrab", true);
+            animator.SetTrigger("Grab");
         }
 
         if (Input.GetButtonDown("PickUp") && !IsPointerOverUIObject())
         {
-            animator.SetBool("IsPickUp", true);
-        }
-
-        if (Input.GetButtonUp("Slash") && !IsPointerOverUIObject())
-        {
-            animator.SetBool("IsSlash", false);
-        }
-
-        if (Input.GetButtonUp("Grab"))
-        {
-            animator.SetBool("IsGrab", false);
-        }
-
-        if (Input.GetButtonUp("PickUp") && !IsPointerOverUIObject())
-        {
-            animator.SetBool("IsPickUp", false);
+            animator.SetTrigger("PickUp");
         }
 
         Vector3 velocity = movementDirection * magnitude;
