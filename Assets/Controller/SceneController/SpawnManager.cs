@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public LayerMask groundLayer;
+    private GameObject playerPrefab;
+    private LayerMask groundLayer;
 
     void Start()
+    {
+        // Vector3 spawnPosition = GetSpawnPosition();
+        // Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    public void RespawnRandom(GameObject playerPrefab)
+    {
+        GameObject player = Instantiate(playerPrefab, GetSpawnPosition(), Quaternion.identity);
+
+    }
+
+    public Vector3 GetSpawnPosition()
     {
         Vector3 spawnPosition;
         int attempts = 0;
@@ -19,14 +31,12 @@ public class SpawnManager : MonoBehaviour
             attempts++;
         } while (!IsValidSpawnPosition(spawnPosition) && attempts < maxAttempts);
 
-        if (attempts < maxAttempts)
+        if (attempts >= maxAttempts)
         {
-            Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+            Debug.LogError("Error: No valid spawn position found.");
         }
-        else
-        {
-            Debug.LogError("Error");
-        }
+
+        return spawnPosition;
     }
 
     private Vector3 GetRandomPositionWithinArea()
@@ -52,4 +62,3 @@ public class SpawnManager : MonoBehaviour
         return colliders.Length == 0;
     }
 }
-

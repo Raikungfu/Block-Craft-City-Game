@@ -8,19 +8,11 @@ public class GlowingSphere : MonoBehaviour
     public float hoverHeight = 0.3f;
     public float hoverSpeed = 0.5f;
     public float rotationSpeed = 50.0f;
-    public Light glowLight;
-    public ParticleSystem glowEffect;
     private Vector3 originalPosition;
 
     void Start()
     {
         originalPosition = transform.position;
-
-        if (glowLight == null)
-            glowLight = GetComponentInChildren<Light>();
-
-        if (glowEffect == null)
-            glowEffect = GetComponentInChildren<ParticleSystem>();
     }
 
     void Update()
@@ -41,24 +33,14 @@ public class GlowingSphere : MonoBehaviour
                 if (CompareTag("Weapon"))
                 {
                     inventory.AddWeapon(gameObject.name);
-                    ToggleEffect(false);
+                    Destroy(gameObject);
+                }
+                if (CompareTag("Block"))
+                {
+                    inventory.AddItem(gameObject.name, ItemType.Block);
                     Destroy(gameObject);
                 }
             }
-        }
-    }
-
-    public void ToggleEffect(bool state)
-    {
-        if (glowLight != null)
-            glowLight.enabled = state;
-
-        if (glowEffect != null)
-        {
-            if (state)
-                glowEffect.Play();
-            else
-                glowEffect.Stop();
         }
     }
 }

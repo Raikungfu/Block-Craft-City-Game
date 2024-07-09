@@ -7,6 +7,10 @@ TagManager:
   - SpawnArea
   - Weapon
   - NPCAttack
+  - MainMenu
+  - DieProgress
+  - Block
+  - StartPopup
   layers:
   - Default
   - TransparentFX

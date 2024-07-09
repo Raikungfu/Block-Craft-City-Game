@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GuyAction : MonoBehaviour
 {
     public float speed = 5f;
     public float rotationSpeed = 720f;
     public float jumpSpeed = 10f;
-
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
@@ -20,10 +21,22 @@ public class GuyAction : MonoBehaviour
 
     public Transform[] cameraTransforms;
 
-    public Weapon currentWeapon;
     private GuyInventory inventory;
+    private float velo = 0.0f;
+    private static readonly int VelocityHash = Animator.StringToHash("Velocity");
+    private static readonly int VelocityXHash = Animator.StringToHash("X");
+    private static readonly int VelocityYHash = Animator.StringToHash("Y");
+    private bool isSlashing = false;
+    private bool canSlash = true;
+    public float slashCooldown = 5.0f;
 
+    public GameObject WeaponsList;
+    public GameObject InventoryList;
 
+    public Weapon currentWeapon; 
+    public Item currentBlock;
+
+    public bool getIsSlashing() => isSlashing;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -32,11 +45,12 @@ public class GuyAction : MonoBehaviour
         stats = GetComponent<GuyStats>();
         inventory = GetComponent<GuyInventory>();
         groundMask = LayerMask.GetMask("mountain");
+        animator.SetFloat(VelocityHash, velo);
     }
 
     void Update()
     {
-        Transform activeCamera = GetActiveCamera();
+        Transform activeCamera = GetActiveCameraTransform();
         if (activeCamera != null)
         {
             HandleMovement(activeCamera);
@@ -45,11 +59,11 @@ public class GuyAction : MonoBehaviour
         }
     }
 
-    Transform GetActiveCamera()
+    Transform GetActiveCameraTransform()
     {
         foreach (var camTransform in cameraTransforms)
         {
-            if (camTransform == Camera.main.transform)
+            if (camTransform.gameObject.active)
             {
                 return camTransform;
             }
@@ -57,8 +71,10 @@ public class GuyAction : MonoBehaviour
         return null;
     }
 
+
     void HandleMovement(Transform activeCamera)
     {
+        if (stats.IsDied) return;
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -70,19 +86,29 @@ public class GuyAction : MonoBehaviour
 
         cameraForward.Normalize();
         cameraRight.Normalize();
-
         Vector3 movementDirection = (horizontalInput * cameraRight + verticalInput * cameraForward).normalized;
-        float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speed;
+
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            if (velo < speed) velo += Time.deltaTime * (speed / 5);
+        }
+        else
+        {
+            velo = 0.0f;
+        }
+
+        animator.SetFloat(VelocityHash, velo);
+        animator.SetFloat(VelocityXHash, horizontalInput);
+        animator.SetFloat(VelocityYHash, verticalInput);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+        }
 
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            animator.SetBool("IsRunning", true);
-        }
-        else
-        {
-            animator.SetBool("IsRunning", false);
         }
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
@@ -108,9 +134,20 @@ public class GuyAction : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Slash") && !IsPointerOverUIObject() && currentWeapon)
+        Vector3 velocity = movementDirection * velo;
+        velocity.y = ySpeed;
+
+        characterController.Move(velocity * Time.deltaTime);
+
+        HandleOtherAction();
+    }
+
+    void HandleOtherAction()
+    {
+        if (Input.GetButtonDown("Slash") && currentWeapon && canSlash)
         {
             animator.SetTrigger("Slash");
+            StartCoroutine(SlashCoroutine());
         }
 
         if (Input.GetButtonDown("Grab"))
@@ -118,15 +155,19 @@ public class GuyAction : MonoBehaviour
             animator.SetTrigger("Grab");
         }
 
-        if (Input.GetButtonDown("PickUp") && !IsPointerOverUIObject())
+        if (Input.GetButtonDown("PickUp"))
         {
             animator.SetTrigger("PickUp");
         }
+    }
 
-        Vector3 velocity = movementDirection * magnitude;
-        velocity.y = ySpeed;
-
-        characterController.Move(velocity * Time.deltaTime);
+    private IEnumerator SlashCoroutine()
+    {
+        isSlashing = true;
+        canSlash = false;
+        yield return new WaitForSeconds(slashCooldown);
+        isSlashing = false;
+        canSlash = true;
     }
 
     void HandleAnimation()
@@ -135,39 +176,70 @@ public class GuyAction : MonoBehaviour
         animator.SetBool("IsJumping", isJumping);
     }
 
-    bool IsPointerOverUIObject()
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
-    }
 
     void HandleWeaponSwitch()
     {
         for (int i = 1; i <= 3; i++)
         {
+            Image childOverlay = WeaponsList.GetComponentsInChildren<Image>()[i];
             if (Input.GetKeyDown(KeyCode.Alpha0 + i))
             {
                 Weapon weapon = inventory.GetWeapon(i - 1);
-                if (currentWeapon != weapon)
+
+                Color overlayColor = new Color(226 / 255f, 84 / 255f, 84 / 255f, 1.0f);
+                Color overlayColorDis = new Color(212 / 255f, 212 / 255f, 212 / 255f, 1.0f);
+                if (weapon != null)
                 {
-                    if (weapon != null)
+
+                    if (currentWeapon != weapon)
                     {
+                        changeColorOverlay(childOverlay, overlayColor);
                         EquipWeapon(weapon);
+                    }
+                    else
+                    {
+                        changeColorOverlay(childOverlay, overlayColorDis);
+                        DestroyWeapon();
+                    }
+                }
+                for (int j = 1; j <= 3; j++)
+                {
+                    if (i != j)
+                    {
+                        Image childOverlayDis = WeaponsList.GetComponentsInChildren<Image>()[j];
+                        changeColorOverlay(childOverlayDis, overlayColorDis);
                     }
                 }
             }
         }
     }
 
+    void changeColorOverlay(Image overlayImage, Color color)
+    {
+        if (overlayImage != null)
+        {
+            overlayImage.color = color;
+        }
+    }
+
     public void EquipWeapon(Weapon newWeapon)
     {
         currentWeapon = newWeapon;
-        Debug.Log("Weapon equipped: " + newWeapon.itemName);
 
         UpdatePlayerWeaponModel(newWeapon);
+    }
+
+    public void DestroyWeapon()
+    {
+        Transform weaponSlot = FindChildTransformByName(transform, "mixamorig:RightHandMiddle4");
+        if (weaponSlot != null)
+        {
+            foreach (Transform child in weaponSlot)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        currentWeapon = null;
     }
 
     private void UpdatePlayerWeaponModel(Weapon weapon)
@@ -182,7 +254,7 @@ public class GuyAction : MonoBehaviour
 
             if (weapon.prefab != null)
             {
-                GameObject instantiatedWeapon = Instantiate(weapon.prefab, weaponSlot);
+                GameObject instantiatedWeapon = Instantiate(Resources.Load<GameObject>(weapon.prefab), weaponSlot);
                 RotateWeaponTowardsCharacter(instantiatedWeapon);
             }
         }
@@ -217,5 +289,45 @@ public class GuyAction : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void BuildBlock(Vector3 position)
+    {
+        if (currentBlock != null && currentBlock.amount > 0)
+        {
+            GameObject blockPrefab = Resources.Load<GameObject>(currentBlock.prefab);
+            GlowingSphere script = blockPrefab.GetComponent<GlowingSphere>();
+            if (script != null)
+            {
+                Destroy(script);
+            }
+            if (blockPrefab != null)
+            {
+                Instantiate(blockPrefab, position, Quaternion.identity);
+                currentBlock.amount--;
+                Debug.Log("Block built. Remaining amount: " + currentBlock.amount);
+            }
+            else
+            {
+                Debug.LogWarning("Block prefab not found!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No blocks available to build!");
+        }
+    }
+
+    public void DestroyBlock(GameObject block)
+    {
+        if (currentWeapon != null)
+        {
+            Destroy(block);
+            Debug.Log("Block destroyed with weapon: " + currentWeapon.itemName);
+        }
+        else
+        {
+            Debug.LogWarning("No weapon equipped to destroy the block!");
+        }
     }
 }

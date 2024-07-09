@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class GuyStats : MonoBehaviour
 {
+    public string userName = "Rai Yugi";
     public int level;
     public int maxHealth;
     public int currentHealth;
     public int maxMana;
     public int currentMana;
     public int exp;
+    public int respawnTime = 3;
     public int currentExp = 0;
+
     public TextMeshProUGUI userNameText;
     public TextMeshProUGUI levelText;
 
@@ -22,8 +25,14 @@ public class GuyStats : MonoBehaviour
     public Slider healthSlider;
     public Slider manaSlider;
     public Slider expSlider;
+    public Slider diedCountdownSlider;
+    private Animator animator;
+    public bool IsDied = false;
+    private SpawnManager spawnManager;
+    public float regenRate = 3f;
+    public GuyInventory GuyInventory;
 
-    public float regenRate = 1f;
+
     void Start()
     {
         if (healthSlider != null)
@@ -40,10 +49,48 @@ public class GuyStats : MonoBehaviour
         {
             expText = expSlider.GetComponentInChildren<TextMeshProUGUI>();
         }
-        userNameText.text = "Rai Yugi";
+        userName = StaticLoadData.userName;
+
+        if (StaticLoadData.IsLoadData)
+        {
+            gameObject.SetActive(false);
+            level = StaticLoadData.level;
+            currentExp = StaticLoadData.currentExp;
+            currentHealth = StaticLoadData.currentHealth;
+            currentMana = StaticLoadData.currentMana;
+            GuyInventory = GetComponent<GuyInventory>();
+            foreach (var weaponToSave in StaticLoadData.weapons)
+            {
+                Weapon weapon = new Weapon(weaponToSave);
+                GuyInventory.AddWeapon(weapon);
+            }
+
+            foreach (var itemToSave in StaticLoadData.inventory)
+            {
+                Item item = new Item(itemToSave.itemName, itemToSave.itemType, itemToSave.icon, itemToSave.amount, itemToSave.describe, itemToSave.prefab);
+                GuyInventory.AddItem(item);
+            }
+            Vector3 pos = StaticLoadData.playerPosition;
+            pos.y += 2f;
+            transform.position = pos;
+            gameObject.SetActive(true);
+        }
+
+        userNameText.text = userName;
         levelText.text = "Lv. " + level;
         StartStats(level);
-        StartCoroutine(RegenerateHealth());
+        StartCoroutine(RegenerateHealthMana());
+        spawnManager = FindObjectOfType<SpawnManager>();
+        animator = GetComponent<Animator>();
+    }
+
+    public void SetGuyStats(string userName, int level, int currentHealth, int currentMana, int currentExp)
+    {
+        this.userName = userName;
+        this.level = level;
+        this.currentHealth = currentHealth;
+        this.currentMana = currentMana;
+        this.currentExp = currentExp;
     }
 
     private void Update()
@@ -135,7 +182,7 @@ public class GuyStats : MonoBehaviour
         }
     }
 
-    private IEnumerator RegenerateHealth()
+    private IEnumerator RegenerateHealthMana()
     {
         while (true)
         {
@@ -143,25 +190,32 @@ public class GuyStats : MonoBehaviour
 
             if (currentHealth < maxHealth)
             {
-                currentHealth += (int)regenRate * level * 10;
+                int healthRegen = (int)(regenRate * level);
+                currentHealth += healthRegen;
                 if (currentHealth > maxHealth)
                 {
                     currentHealth = maxHealth;
                 }
-                currentMana += (int)regenRate * level;
+            }
+
+            if (currentMana < maxMana)
+            {
+                int manaRegen = (int)(regenRate * level / 2);
+                currentMana += manaRegen;
                 if (currentMana > maxMana)
                 {
                     currentMana = maxMana;
                 }
-                UpdateUI();
             }
+
+            UpdateUI();
         }
     }
+
 
     public void GainExperience(int amount)
     {
         currentExp += amount;
-        UpdateExperienceUI();
 
         if (currentExp >= exp)
         {
@@ -169,6 +223,53 @@ public class GuyStats : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int amount)
+    {
+        currentHealth = Mathf.Max(0, currentHealth - amount);
+
+        UpdateUI();
+    }
+
+    private void FixedUpdate()
+    {
+
+        if (currentHealth <= 0 && !IsDied)
+        {
+            animator.SetTrigger("Died");
+            IsDied = true;
+            if (level > 1 && currentExp == 0)
+            {
+                --level;
+                int temp = CalculateLevelExp(level);
+                currentExp = Mathf.Max(0, temp - Mathf.FloorToInt(temp * 0.1f));
+            }
+            else
+            {
+                currentExp = Mathf.Max(0, currentExp - Mathf.FloorToInt(currentExp * 0.1f));
+            }
+            Invoke(nameof(Respawn), respawnTime * level);
+        }
+    }
+    private void Respawn()
+    {
+        gameObject.SetActive(false);
+        IsDied = false;
+
+        currentHealth = CalculateMaxHealth(level);
+        currentMana = CalculateMaxMana(level);
+        UpdateUI();
+        UpdateLevelUI();
+
+        Vector3 spawnPosition = spawnManager.GetSpawnPosition();
+        transform.position = spawnPosition;
+        gameObject.SetActive(true);
+    }
+
+    private void UpdateRespawnUI(float timeRemaining)
+    {
+        diedCountdownSlider.GetComponentInChildren<TextMeshProUGUI>().text = Mathf.CeilToInt(timeRemaining).ToString();
+        diedCountdownSlider.value = timeRemaining;
+    }
     private void LevelUp()
     {
         level++;
@@ -180,10 +281,6 @@ public class GuyStats : MonoBehaviour
     private int CalculateNextLevelExp(int level)
     {
         return CalculateLevelExp(level);
-    }
-
-    private void UpdateExperienceUI()
-    {
     }
 
     private void UpdateLevelUI()
