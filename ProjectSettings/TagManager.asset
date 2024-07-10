@@ -11,6 +11,8 @@ TagManager:
   - DieProgress
   - Block
   - StartPopup
+  - Water
+  - Mountain
   layers:
   - Default
   - TransparentFX

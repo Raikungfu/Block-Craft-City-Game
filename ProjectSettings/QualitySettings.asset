@@ -24,7 +24,7 @@ QualitySettings:
     antiAliasing: 0
     softParticles: 0
     softVegetation: 0
-    realtimeReflectionProbes: 0
+    realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
     lodBias: 0.3
@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: d28c8d4bcd43b9643a1a2d899d840086, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Medium

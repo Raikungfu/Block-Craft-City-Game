@@ -30,12 +30,12 @@ public class BuildBlock : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            /* Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit; */
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hit))
             {
-                if (hit.transform.CompareTag("Block"))
+                if (hit.transform.CompareTag("Player"))
                 {
                     guyAction.DestroyBlock(hit.transform.gameObject);
                 }

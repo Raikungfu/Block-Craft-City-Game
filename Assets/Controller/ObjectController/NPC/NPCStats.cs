@@ -109,7 +109,21 @@ public class NPCStats : MonoBehaviour
         {
             GameObject item = dropItems[Random.Range(0, dropItems.Length)];
             Vector3 randomPosition = transform.position + Random.insideUnitSphere * dropRadius;
-            randomPosition.y = transform.position.y + 1f;
+            float pos = transform.position.y + 1f;
+            if (pos > 1)
+            {
+                randomPosition.y = pos;
+            }
+            else
+            {
+                GameObject player = GameObject.FindWithTag("Player");
+                if (player != null)
+                {
+                    Vector3 playerPosition = player.transform.position;
+                    randomPosition.y = player.transform.position.y + 1f;
+                    Debug.Log("Player Position: " + playerPosition);
+                }
+            }
             item.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f); 
             GameObject instantiatedItem = Instantiate(item, randomPosition, Quaternion.identity);
             GameObject instantiatedSpotLight = Instantiate(spotLight, randomPosition, Quaternion.identity);
